@@ -22,8 +22,15 @@ const cakes = ref([
     <h1>Products</h1>
 
     <section>
-      <div v-for="cake in cakes" :key="cake.id">
-        <ProductCard :cake="cake" />
+      <div>
+        <ProductCard
+          v-for="cake in cakes"
+          :key="cake.id"
+          :cakeId="cake.id"
+          :cakeDescription="cake.description"
+          :cakePrice="cake.price"
+          :cakeName="cake.name"
+        />
       </div>
     </section>
   </div>

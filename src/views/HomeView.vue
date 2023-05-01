@@ -2,6 +2,8 @@
 
 <script setup lang="ts">
 import TheHero from "@/components/TheHero.vue";
+import TheProducts from "@/components/TheProducts.vue";
+import TheContact from "@/components/TheContact.vue";
 
 // import TheNav from "@/components/TheNav.vue";
 // import TheProducts from "@/components/TheProducts.vue";

@@ -3,6 +3,18 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import TheFooter from "./components/TheFooter.vue";
+
+import { ref } from "vue";
+
+import { useCartStore } from "./stores/cart";
+
+const cartStore = useCartStore();
+
+const isShow = ref(true);
+
+function toggleCart() {
+  isShow.value = !isShow.value;
+}
 </script>
 
 <template>
@@ -12,12 +24,73 @@ import TheFooter from "./components/TheFooter.vue";
         <RouterLink to="/">Home</RouterLink>
         <!-- <RouterLink to="/about">About</RouterLink> -->
       </nav>
+      <!-- Desktop -->
+      <span @click="toggleCart" class="desktop-cart"
+        >{{ cartStore.cart.length }} Desktop</span
+      >
+      <!-- Mobile -->
+      <RouterLink to="/cart" class="mobile-cart">
+        {{ cartStore.cart.length }} Mobile Cart</RouterLink
+      >
     </div>
   </header>
 
   <RouterView />
 
+  <!-- Show cart component from the right side -->
+  <aside :class="[isShow ? 'show-cart' : '']" class="cart-sidebar">
+    <div>
+      <!-- title -->
+      <div>
+        <span @click="toggleCart">Close</span>
+        <h3>Your Cart</h3>
+      </div>
+    </div>
+  </aside>
+
   <TheFooter />
 </template>
 
-<style scoped></style>
+<style scoped>
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.desktop-cart {
+  display: none;
+}
+
+.mobile-cart {
+  display: flex;
+}
+
+@media only screen and (min-width: 450px) {
+  .mobile-cart {
+    display: none;
+  }
+
+  .desktop-cart {
+    display: flex;
+  }
+
+  .cart-sidebar {
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background-color: #ffff;
+    transition: 0.4s ease-in-out;
+  }
+
+  .show-cart {
+    width: 250px;
+    border: 1px solid red;
+  }
+
+  /* .hide-cart {
+    
+  } */
+}
+</style>
