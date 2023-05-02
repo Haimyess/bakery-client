@@ -4,13 +4,18 @@
 import { RouterLink, RouterView } from "vue-router";
 import TheFooter from "./components/TheFooter.vue";
 
-import { ref } from "vue";
+import { ref, computed } from "vue";
+
+const cartQuantity = computed(() => {
+  // reduce all the quantities later
+  return cartStore.cart.length;
+});
 
 import { useCartStore } from "./stores/cart";
 
 const cartStore = useCartStore();
 
-const isShow = ref(true);
+const isShow = ref(false);
 
 function toggleCart() {
   isShow.value = !isShow.value;
@@ -26,11 +31,11 @@ function toggleCart() {
       </nav>
       <!-- Desktop -->
       <span @click="toggleCart" class="desktop-cart"
-        >{{ cartStore.cart.length }} Desktop</span
+        >{{ cartQuantity }} Desktop</span
       >
       <!-- Mobile -->
       <RouterLink to="/cart" class="mobile-cart">
-        {{ cartStore.cart.length }} Mobile Cart</RouterLink
+        {{ cartQuantity }} Mobile Cart</RouterLink
       >
     </div>
   </header>
@@ -57,6 +62,10 @@ function toggleCart() {
   justify-content: space-between;
 }
 
+.cart-sidebar {
+  display: none;
+}
+
 .desktop-cart {
   display: none;
 }
@@ -75,6 +84,7 @@ function toggleCart() {
   }
 
   .cart-sidebar {
+    display: flex;
     width: 0;
     position: fixed;
     top: 0;

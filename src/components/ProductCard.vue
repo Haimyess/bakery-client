@@ -22,17 +22,30 @@ interface Cake {
   cakePrice: number;
   //   images: Images;
   cakeDescription: string;
+  cakeQuantity?: number | undefined;
 }
 
 const props = defineProps<Cake>();
 
 console.log(props.cakeName);
 
-function addToCart(productId: number) {
-  console.log(productId);
+function addToCart(product: Cake) {
+  console.log(product);
   console.log("added to cart");
 
-  cartStore.cart.push(productId);
+  //   If exists we add quantity++
+  // if doesnt exist we add quantity of 1
+  //   add to local storage
+
+  //   const exist = cartStore.cart.includes(product.cakeId);
+  const exist = cartStore.cart.find((item) => item.cakeId === product.cakeId);
+  console.log(exist);
+
+  !exist
+    ? (product.cakeQuantity = 1 && cartStore.cart.push(product))
+    : (exist.cakeQuantity += 1);
+
+  console.log(cartStore.cart);
 }
 </script>
 
@@ -41,7 +54,11 @@ function addToCart(productId: number) {
     <h2>{{ props.cakeName }}</h2>
     <p>{{ props.cakeDescription }}</p>
     <p>{{ props.cakePrice }}</p>
-    <button @click="addToCart(props.cakeId)">Add to cart</button>
+    <button
+      @click="addToCart({ cakeId, cakePrice, cakeDescription, cakeName })"
+    >
+      Add to cart
+    </button>
   </div>
 </template>
 
