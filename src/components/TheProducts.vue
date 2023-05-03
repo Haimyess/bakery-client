@@ -14,6 +14,17 @@ const cakes = ref([
     // images: ["first image"],
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, saepe! Itaque,accusantium dolores fuga omnis ratione magni amet dolore aperiam accusamus namillo blanditiis sequi esse repellendus, magnam placeat voluptate aspernatur etea. Corrupti voluptate aspernatur illo molestiae, repellendus providentdeserunt mollitia eveniet facere a vitae dolor, laboriosam qui repudiandae.",
+    // quantity: 1,
+  },
+  {
+    id: 2,
+    name: "Torta panqueque manjar nuez ",
+    // ingridients: ["Manjar"],
+    price: 300,
+    // images: ["first image"],
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, saepe! Itaque,accusantium dolores fuga omnis ratione magni amet dolore aperiam accusamus namillo blanditiis sequi esse repellendus, magnam placeat voluptate aspernatur etea. Corrupti voluptate aspernatur illo molestiae, repellendus providentdeserunt mollitia eveniet facere a vitae dolor, laboriosam qui repudiandae.",
+    // quantity: 1,
   },
 ]);
 </script>
@@ -35,5 +46,5 @@ const cakes = ref([
     </section>
   </div>
 </template>
-
+<!-- :cakeQuantity="cake.quantity" -->
 <style></style>

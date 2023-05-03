@@ -4,16 +4,18 @@
 import { RouterLink, RouterView } from "vue-router";
 import TheFooter from "./components/TheFooter.vue";
 
-import { ref, computed } from "vue";
+import { ref, computed, getCurrentInstance } from "vue";
 
 const cartQuantity = computed(() => {
   // reduce all the quantities later
-  return cartStore.cart.length;
+  return cartStore.cart.reduce((acc, curr) => acc + curr.cakeQuantity, 0);
 });
 
 import { useCartStore } from "./stores/cart";
 
 const cartStore = useCartStore();
+
+console.log(cartStore.cart);
 
 const isShow = ref(false);
 

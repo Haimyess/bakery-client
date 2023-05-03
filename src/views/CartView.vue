@@ -21,7 +21,7 @@ const cartStore = useCartStore();
           <span>{{ product.cakeName }}</span>
           <span>${{ product.cakePrice }}</span>
         </div>
-        <div><span>delete</span></div>
+        <div><button>delete</button></div>
       </div>
 
       <!-- down -->
@@ -29,9 +29,9 @@ const cartStore = useCartStore();
       <div>
         <!-- quantity -->
         <div>
-          <span>-</span>
-          <span>quantity </span>
-          <span>+</span>
+          <button @click="cartStore.decreaseQuantity(product)">-</button>
+          <span>{{ product.cakeQuantity }}</span>
+          <button @click="cartStore.addToCart(product)">+</button>
         </div>
         <div><span>Total price</span></div>
       </div>

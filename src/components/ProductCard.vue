@@ -13,7 +13,7 @@ import { useCartStore } from "@/stores/cart";
 
 const cartStore = useCartStore();
 
-console.log(cartStore.cart);
+// console.log(cartStore.addToCart());
 
 interface Cake {
   cakeId: number;
@@ -29,24 +29,17 @@ const props = defineProps<Cake>();
 
 console.log(props.cakeName);
 
-function addToCart(product: Cake) {
-  console.log(product);
-  console.log("added to cart");
+// function addToCart(product: Cake) {
+//   const exist = cartStore.cart.find((item) => item.cakeId === product.cakeId);
 
-  //   If exists we add quantity++
-  // if doesnt exist we add quantity of 1
-  //   add to local storage
+//   if (exist) {
+//     exist.cakeQuantity++;
+//   } else {
+//     cartStore.cart.push({ ...product, cakeQuantity: 1 });
+//   }
 
-  //   const exist = cartStore.cart.includes(product.cakeId);
-  const exist = cartStore.cart.find((item) => item.cakeId === product.cakeId);
-  console.log(exist);
-
-  !exist
-    ? (product.cakeQuantity = 1 && cartStore.cart.push(product))
-    : (exist.cakeQuantity += 1);
-
-  console.log(cartStore.cart);
-}
+//   localStorage.setItem("cart", JSON.stringify(cartStore.cart));
+// }
 </script>
 
 <template>
@@ -55,7 +48,15 @@ function addToCart(product: Cake) {
     <p>{{ props.cakeDescription }}</p>
     <p>{{ props.cakePrice }}</p>
     <button
-      @click="addToCart({ cakeId, cakePrice, cakeDescription, cakeName })"
+      @click="
+        cartStore.addToCart({
+          cakeId,
+          cakeName,
+          cakeDescription,
+          cakePrice,
+          cakeQuantity,
+        })
+      "
     >
       Add to cart
     </button>
