@@ -1,9 +1,15 @@
 <!-- @format -->
 
 <script setup lang="ts">
+// import { computed } from "vue";
+import CartBottomNav from "@/components/CartBottomNav.vue";
 import { useCartStore } from "@/stores/cart";
 
 const cartStore = useCartStore();
+
+const getPricePerItem = (qty: number | undefined, price: number) => {
+  return qty * price;
+};
 </script>
 
 <template>
@@ -37,12 +43,21 @@ const cartStore = useCartStore();
           <span>{{ product.cakeQuantity }}</span>
           <button @click="cartStore.addToCart(product)">+</button>
         </div>
-        <div><span>Total price</span></div>
+        <div>
+          <span>Subtotal price</span>
+          <span
+            >${{
+              getPricePerItem(product.cakeQuantity, product.cakePrice)
+            }}</span
+          >
+        </div>
       </div>
     </div>
   </template>
 
   <p v-else>Your cart is empty.</p>
+
+  <CartBottomNav v-if="cartStore.cart.length > 0" />
 </template>
 
 <style></style>

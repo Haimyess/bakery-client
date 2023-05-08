@@ -58,5 +58,22 @@ export const useCartStore = defineStore("cart", () => {
     localStorage.setItem("cart", JSON.stringify(cart.value));
   }
 
-  return { cart, addToCart, decreaseQuantity, deleteFromCart };
+
+  const getTotalPrice = computed(() => {
+
+    let total = 0
+    cart.value.forEach(product => {
+      total += product.cakePrice * product.cakeQuantity
+    });
+    return total
+  })
+  // const getTotalPrice = computed(() => {
+  //   return cart.value.reduce((acc, curr) => acc += curr.cakePrice, 0)
+  // })
+  
+
+    
+  // }
+  // )
+  return { cart, addToCart, decreaseQuantity, deleteFromCart, getTotalPrice };
 });
