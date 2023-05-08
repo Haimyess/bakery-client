@@ -29,24 +29,34 @@ export const useCartStore = defineStore("cart", () => {
     localStorage.setItem("cart", JSON.stringify(cart.value));
   }
 
-  function decreaseQuantity(product: Product) {
+  function decreaseQuantity(product : Product) {
     product.cakeQuantity--;
 
     if (product.cakeQuantity === 0) {
       console.log("we should delete the product");
+
+      deleteFromCart(product.cakeId);
       // localStorage.removeItem()
 
-      const updatedArr = cart.value.filter(
-        (item) => item.cakeId !== product.cakeId
-      );
-      cart.value = updatedArr;
+      //   const updatedArr = cart.value.filter(
+      //     (item) => item.cakeId !== product.cakeId
+      //   );
+      //   cart.value = updatedArr;
+      // }
+      // localStorage.setItem("cart", JSON.stringify(cart.value));
     }
-    localStorage.setItem("cart", JSON.stringify(cart.value));
   }
   // onMounted(() => {
   // })
 
   console.log(cart.value);
 
-  return { cart, addToCart, decreaseQuantity };
+  function deleteFromCart(id: number) {
+    const updatedArr = cart.value.filter((item) => item.cakeId !== id);
+    cart.value = updatedArr;
+
+    localStorage.setItem("cart", JSON.stringify(cart.value));
+  }
+
+  return { cart, addToCart, decreaseQuantity, deleteFromCart };
 });

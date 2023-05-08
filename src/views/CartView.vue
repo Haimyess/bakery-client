@@ -21,7 +21,11 @@ const cartStore = useCartStore();
           <span>{{ product.cakeName }}</span>
           <span>${{ product.cakePrice }}</span>
         </div>
-        <div><button>delete</button></div>
+        <div>
+          <button @click="cartStore.deleteFromCart(product.cakeId)">
+            delete
+          </button>
+        </div>
       </div>
 
       <!-- down -->
