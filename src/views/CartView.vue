@@ -1,5 +1,7 @@
 <!-- @format -->
 
+<!-- Add design and create components -->
+
 <script setup lang="ts">
 // import { computed } from "vue";
 import CartBottomNav from "@/components/CartBottomNav.vue";

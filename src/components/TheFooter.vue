@@ -1,12 +1,12 @@
 <!-- @format -->
 <script setup lang="ts">
 import { ref, computed, onMounted, watch, onUnmounted } from "vue";
-import MobileFooter from "./MobileFooter.vue";
-import DesktopFooter from "./DesktopFooter.vue";
+// import MobileFooter from "./MobileFooter.vue";
+// import DesktopFooter from "./DesktopFooter.vue";
 
-import { useWindowSize } from "@vueuse/core";
+// import { useWindowSize } from "@vueuse/core";
 
-const { width, height } = useWindowSize();
+// const { width, height } = useWindowSize();
 
 // const windowWidth = ref(window.innerWidth);
 
@@ -25,17 +25,18 @@ const { width, height } = useWindowSize();
 // const selectFooter = computed(() => {
 //   return windowWidth.value > 480 ? DesktopFooter : MobileFooter;
 // });
-const selectFooter = computed(() => {
-  return width.value > 480 ? DesktopFooter : MobileFooter;
-});
+// const selectFooter = computed(() => {
+//   return width.value > 480 ? DesktopFooter : MobileFooter;
+// });
 </script>
 
 <template>
   <div class="footer">
     <footer>
-      {{ width }}
+      <span>footer</span>
+      <!-- {{ width }} -->
       <!-- {{ windowWidth }} -->
-      <component :is="selectFooter"></component>
+      <!-- <component :is="selectFooter"></component> -->
     </footer>
   </div>
 </template>
@@ -50,7 +51,10 @@ footer {
 
 <!-- Footer for cart, final price and checkout button -->
 <!-- Create dynamic button component -->
-<!-- delete product button: DONE -->
+
 <!-- when added product to cartchange button to added and is not possible to add it again -->
 
+<!-- Desktop cart -->
+<!-- Cart footer -->
+<!-- menu -->
 <!-- stripe implementation check -->
