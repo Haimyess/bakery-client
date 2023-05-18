@@ -20,6 +20,7 @@ console.log(cartStore.cart);
 const isShow = ref(false);
 
 function toggleCart() {
+  // if opened
   isShow.value = !isShow.value;
 }
 </script>
@@ -54,6 +55,9 @@ function toggleCart() {
       </div>
     </div>
   </aside>
+  <div v-if="isShow" @click="toggleCart" class="cart-sidebar--wrapper">
+    Hola
+  </div>
 
   <TheFooter />
 </template>
@@ -83,6 +87,15 @@ function toggleCart() {
 
   .desktop-cart {
     display: flex;
+  }
+  .cart-sidebar--wrapper {
+    border: 1px solid green;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    /* height: 100vh; */
   }
 
   .cart-sidebar {

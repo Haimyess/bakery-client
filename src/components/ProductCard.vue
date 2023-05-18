@@ -1,6 +1,7 @@
 <!-- @format -->
 
 <script setup lang="ts">
+import { ref } from "vue";
 import TheButton from "./TheButton.vue";
 // interface Ingridients {
 //   ingriedients: string[];
@@ -30,7 +31,10 @@ const props = defineProps<Cake>();
 
 console.log(props.cakeName);
 
-function changeState() {}
+const isClicked = ref(false);
+function changeState() {
+  isClicked.value = !isClicked.value;
+}
 
 // function addToCart(product: Cake) {
 //   const exist = cartStore.cart.find((item) => item.cakeId === product.cakeId);
@@ -54,32 +58,7 @@ function changeState() {}
     <!-- --------------------------------------------------------- -->
     <!-- ----------Add design and change it when clicked---------- -->
     <!-- --------------------------------------------------------- -->
-    <TheButton
-      @click="
-        cartStore.addToCart({
-          cakeId,
-          cakeName,
-          cakeDescription,
-          cakePrice,
-          cakeQuantity,
-        }),
-          changeState()
-      "
-      >Add to cart</TheButton
-    >
-    <!-- <button
-      @click="
-        cartStore.addToCart({
-          cakeId,
-          cakeName,
-          cakeDescription,
-          cakePrice,
-          cakeQuantity,
-        })
-      "
-    >
-      Add to cart
-    </button> -->
+    <TheButton :state="isClicked" :add="cartStore">Add to cart</TheButton>
   </div>
 </template>
 
