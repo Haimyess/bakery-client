@@ -3,8 +3,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import TheFooter from "./components/TheFooter.vue";
+import TheButton from "./components/TheButton.vue";
 
-import { ref, computed, getCurrentInstance } from "vue";
+import { ref, computed } from "vue";
 
 const cartQuantity = computed(() => {
   // reduce all the quantities later
@@ -53,6 +54,15 @@ function toggleCart() {
         <span @click="toggleCart">Close</span>
         <h3>Your Cart</h3>
       </div>
+      <!-- Show list of products  -->
+      <div>
+        <div v-for="product in cartStore.cart" :key="product.cakeId">
+          <span>{{ product.cakeQuantity }}</span>
+        </div>
+      </div>
+      <div>
+        <TheButton>Checkout</TheButton>
+      </div>
     </div>
   </aside>
   <div v-if="isShow" @click="toggleCart" class="cart-sidebar--wrapper">
@@ -90,12 +100,15 @@ function toggleCart() {
   }
   .cart-sidebar--wrapper {
     border: 1px solid green;
-    position: absolute;
+
+    /* filter: blur(4px); */
+    position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
+    /* bottom: 0; */
     width: 100vw;
-    /* height: 100vh; */
+    height: 100vh;
+    /* z-index: 1000; */
   }
 
   .cart-sidebar {
@@ -107,10 +120,11 @@ function toggleCart() {
     height: 100%;
     background-color: #ffff;
     transition: 0.4s ease-in-out;
+    z-index: 999;
   }
 
   .show-cart {
-    width: 250px;
+    width: 300px;
     border: 1px solid red;
   }
 
