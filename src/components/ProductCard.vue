@@ -31,10 +31,21 @@ const props = defineProps<Cake>();
 
 console.log(props.cakeName);
 
+// Check this later
+
+const product: Cake = {
+  cakeId: props.cakeId,
+  cakeName: props.cakeName,
+  cakeDescription: props.cakeDescription,
+  cakePrice: props.cakePrice,
+};
+
 const isClicked = ref(false);
 function changeState() {
   isClicked.value = !isClicked.value;
 }
+
+// cartStore.addToCart()
 
 // function addToCart(product: Cake) {
 //   const exist = cartStore.cart.find((item) => item.cakeId === product.cakeId);
@@ -58,7 +69,9 @@ function changeState() {
     <!-- --------------------------------------------------------- -->
     <!-- ----------Add design and change it when clicked---------- -->
     <!-- --------------------------------------------------------- -->
-    <TheButton :state="isClicked" :add="cartStore">Add to cart</TheButton>
+    <TheButton @click="cartStore.addToCart(product)" :state="isClicked"
+      >Add to cart</TheButton
+    >
   </div>
 </template>
 

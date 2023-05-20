@@ -4,26 +4,16 @@
 <script setup lang="ts">
 const props = defineProps({
   state: { type: Boolean },
-  add: { required: true },
+  // add: { required: true },
+  // item: { required: true },
 });
 </script>
 
 <template>
-  <button
-    @click="
-      props.add.addToCart({
-        cakeId,
-        cakeName,
-        cakeDescription,
-        cakePrice,
-        cakeQuantity,
-      }),
-        changeState()
-    "
-    :class="props.state ? 'added' : 'btn'"
-  >
+  <button :class="props.state ? 'added' : 'btn'">
     <slot />
   </button>
+
   <!-- class="btn" -->
 </template>
 

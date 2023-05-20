@@ -56,12 +56,19 @@ function toggleCart() {
       </div>
       <!-- Show list of products  -->
       <div>
-        <div v-for="product in cartStore.cart" :key="product.cakeId">
+        <div
+          v-for="product in cartStore.cart"
+          :key="product.cakeId"
+          class="cart-product"
+        >
+          <span>{{ product.cakeName }}</span>
           <span>{{ product.cakeQuantity }}</span>
         </div>
       </div>
       <div>
-        <TheButton>Checkout</TheButton>
+        <TheButton v-if="cartQuantity > 0">Checkout</TheButton>
+        <RouterLink v-if="cartQuantity > 0" to="/cart">View Cart</RouterLink>
+        <span v-else>Your cart is empty</span>
       </div>
     </div>
   </aside>
@@ -125,6 +132,10 @@ function toggleCart() {
 
   .show-cart {
     width: 300px;
+    border: 1px solid red;
+  }
+
+  .cart-product {
     border: 1px solid red;
   }
 
