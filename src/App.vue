@@ -72,9 +72,7 @@ function toggleCart() {
       </div>
     </div>
   </aside>
-  <div v-if="isShow" @click="toggleCart" class="cart-sidebar--wrapper">
-    Hola
-  </div>
+  <div v-if="isShow" @click="toggleCart" class="cart-sidebar--wrapper"></div>
 
   <TheFooter />
 </template>
@@ -98,6 +96,9 @@ function toggleCart() {
 }
 
 @media only screen and (min-width: 450px) {
+  aside > * {
+    white-space: nowrap;
+  }
   .mobile-cart {
     display: none;
   }
@@ -106,7 +107,7 @@ function toggleCart() {
     display: flex;
   }
   .cart-sidebar--wrapper {
-    border: 1px solid green;
+    /* border: 1px solid green; */
 
     /* filter: blur(4px); */
     position: fixed;
@@ -131,8 +132,8 @@ function toggleCart() {
   }
 
   .show-cart {
-    width: 300px;
-    border: 1px solid red;
+    width: 350px;
+    /* border: 1px solid red; */
   }
 
   .cart-product {
