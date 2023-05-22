@@ -13,6 +13,8 @@ import { ref, reactive, computed } from "vue";
 
 const contactData = reactive({ userName: "", userEmail: "", userMessage: "" });
 
+const isSubmitMsg = ref(false);
+
 const rules = computed(() => {
   return {
     userName: { required }, // Matches state.firstName
@@ -30,6 +32,12 @@ async function handleContact() {
 
   if (result) {
     console.log("Form Validated and sent succesfully");
+    isSubmitMsg.value = true;
+    v$.value.$reset();
+
+    contactData.userEmail = "";
+    contactData.userName = "";
+    contactData.userMessage = "";
   } else {
     console.log("Error!!");
   }
@@ -45,6 +53,7 @@ async function handleContact() {
       placeholder="John Doe"
       label="Full Name:"
       v-model="contactData.userName"
+      @blur="v$.$touch"
     />
 
     <span
@@ -88,6 +97,8 @@ async function handleContact() {
 
     <TheButton> Submit</TheButton>
   </form>
+
+  <p v-if="isSubmitMsg">Message Sent succesfully</p>
 </template>
 
 <style scoped>

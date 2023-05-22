@@ -11,7 +11,7 @@ export const useCartStore = defineStore("cart", () => {
     cakeName: string;
     cakeQuantity?: number;
   }
-
+const isShow = ref(false);
   // add to cart localstoreage
   // Product[] means an array of objects. the objects are the product interface
 
@@ -71,9 +71,16 @@ export const useCartStore = defineStore("cart", () => {
   //   return cart.value.reduce((acc, curr) => acc += curr.cakePrice, 0)
   // })
   
-
+const cartQuantity = computed(() => {
+  // reduce all the quantities later
+  return cart.value.reduce((acc, curr) => acc + curr.cakeQuantity, 0);
+});
     
+function toggleCart() {
+  // if opened
+  isShow.value = !isShow.value;
+}
   // }
   // )
-  return { cart, addToCart, decreaseQuantity, deleteFromCart, getTotalPrice };
+  return { cart, addToCart, decreaseQuantity, deleteFromCart, getTotalPrice, cartQuantity, isShow, toggleCart};
 });
