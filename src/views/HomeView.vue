@@ -4,6 +4,7 @@
 import TheHero from "@/components/TheHero.vue";
 import TheProducts from "@/components/TheProducts.vue";
 import TheContact from "@/components/TheContact.vue";
+import Faq from "@/components/Homepage/Sections/Faq.vue";
 
 import TheNav from "@/components/TheNav.vue";
 // import TheProducts from "@/components/TheProducts.vue";
@@ -16,6 +17,7 @@ import TheNav from "@/components/TheNav.vue";
     <TheNav />
     <TheHero />
     <TheProducts />
+    <Faq />
     <TheContact />
     <!-- <TheFooter /> -->
   </main>
