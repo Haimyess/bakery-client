@@ -13,8 +13,8 @@ import TheNav from "@/components/TheNav.vue";
 </script>
 
 <template>
-  <main>
-    <TheNav />
+  <TheNav />
+  <main class="home">
     <TheHero />
     <TheProducts />
     <Faq />
@@ -22,3 +22,10 @@ import TheNav from "@/components/TheNav.vue";
     <!-- <TheFooter /> -->
   </main>
 </template>
+
+<style scoped>
+.home {
+  width: 90%;
+  margin: 0 auto;
+}
+</style>

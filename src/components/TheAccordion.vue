@@ -17,7 +17,7 @@ function toggleExpansion() {
 </script>
 
 <template>
-  <div>
+  <div class="accordion">
     <!-- up -->
     <div @click="toggleExpansion" class="question-wrapper">
       <!-- Question -->
@@ -27,31 +27,35 @@ function toggleExpansion() {
     </div>
 
     <!-- Text appering -->
-    <div :class="[isClicked ? 'open' : 'closed']">
+    <div :class="isClicked ? 'open' : ''" class="closed">
       {{ props.answer }}
     </div>
   </div>
 </template>
 
 <style scoped>
-.question-wrapper {
+.accordion {
   border: 1px solid #000000;
-  padding: 1rem;
+}
+.question-wrapper {
+  padding: 0.7rem;
   border-radius: 5px;
 
   display: flex;
   justify-content: space-between;
 }
 .closed {
-  display: none;
-}
-/* .closed > p {
+  visibility: hidden;
   height: 0;
-  border: 1px solid red;
-  transition: 0.3s ease-in-out;
-} */
+  opacity: 0;
+  padding: 0 1rem;
+
+  transition: 0.3s ease-out;
+}
+
 .open {
-  display: block;
-  /* max-height: 100%; */
+  visibility: visible;
+  height: max-content;
+  opacity: 1;
 }
 </style>

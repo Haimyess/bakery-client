@@ -2,4 +2,6 @@
 
 <script setup lang="ts"></script>
 
-<template></template>
+<template>
+  <h1>Product page</h1>
+</template>

@@ -1,7 +1,7 @@
 <!-- @format -->
 
 <script setup lang="ts">
-import TheAccordion from "@/components/TheAccordion.vue";
+// import TheAccordion from "@/components/TheAccordion.vue";
 
 import { ref } from "vue";
 
@@ -27,12 +27,26 @@ const questions = ref([
 </script>
 
 <template>
-  <template v-for="question of questions" :key="question.id">
-    <TheAccordion
-      :question="question.questionTitle"
-      :answer="question.answer"
-    />
-  </template>
+  <div class="faq">
+    <!-- <template v-for="question of questions" :key="question.id"> -->
+    <!-- :question="question.questionTitle" :answer="question.answer" -->
+
+    <!-- <TheAccordion -->
+    <v-expansion-panels>
+      <v-expansion-panel
+        v-for="question of questions"
+        :key="question.id"
+        title="question.questionTitle"
+        text="question.answer"
+      ></v-expansion-panel>
+    </v-expansion-panels>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+</style>
