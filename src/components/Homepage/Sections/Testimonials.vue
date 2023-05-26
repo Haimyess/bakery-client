@@ -1,7 +1,9 @@
 <!-- @format -->
 
 <script setup lang="ts">
-import TestimonialsList from "../Components/TestimonialsList.vue";
+// Components
+import SectionTitle from "@/components/SectionTitle.vue";
+// import TestimonialsList from "../Components/TestimonialsList.vue";
 import Testimonial from "../Components/Testimonial.vue";
 
 // Import Swiper Vue.js components
@@ -51,7 +53,8 @@ const testimonials = ref([
 </script>
 
 <template>
-  <h3>What People Say About Us</h3>
+  <SectionTitle text="What People Say About Us" />
+  <!-- <h3 class="section-title">What People Say About Us</h3> -->
 
   <swiper
     :slides-per-view="1"
