@@ -28,22 +28,30 @@ const questions = ref([
 
 <template>
   <div class="faq">
+    <h3 class="section-title">Frecuently Asked Questions (FAQ)</h3>
     <!-- <template v-for="question of questions" :key="question.id"> -->
     <!-- :question="question.questionTitle" :answer="question.answer" -->
 
     <!-- <TheAccordion -->
     <v-expansion-panels>
-      <v-expansion-panel
-        v-for="question of questions"
-        :key="question.id"
-        title="question.questionTitle"
-        text="question.answer"
-      ></v-expansion-panel>
+      <v-expansion-panel v-for="question of questions" :key="question.id">
+        <v-expansion-panel-title
+          expand-icon="mdi-plus"
+          collapse-icon="mdi-minus"
+        >
+          {{ question.questionTitle }}
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>{{ question.answer }}</v-expansion-panel-text>
+      </v-expansion-panel>
     </v-expansion-panels>
   </div>
 </template>
 
 <style scoped>
+.section-title {
+  margin: 1rem 0;
+  text-align: center;
+}
 .faq {
   display: flex;
   flex-direction: column;

@@ -6,7 +6,7 @@ import { useCartStore } from "@/stores/cart";
 
 // Fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faCartShopping);
@@ -36,7 +36,7 @@ const cartStore = useCartStore();
         >
         <!-- Mobile -->
 
-        <RouterLink to="">Tres Leches Cake</RouterLink>
+        <RouterLink to="/products/">Tres Leches Cake</RouterLink>
 
         <RouterLink to="/cart" class="mobile-cart">
           <div type="button" class="position-relative">

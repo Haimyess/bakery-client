@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 // import { computed } from "vue";
-import CartBottomNav from "@/components/CartBottomNav.vue";
+import CartBottomNav from "@/components/Cart/Components/CartBottomNav.vue";
 import { useCartStore } from "@/stores/cart";
 
 // Components

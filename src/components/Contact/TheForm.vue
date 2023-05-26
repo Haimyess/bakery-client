@@ -6,8 +6,8 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, email, maxLength, between } from "@vuelidate/validators";
 
 // Components
-import TheButton from "./TheButton.vue";
-import TheInput from "./TheInput.vue";
+import TheButton from "../TheButton.vue";
+import TheInput from "../TheInput.vue";
 
 import { ref, reactive, computed } from "vue";
 
