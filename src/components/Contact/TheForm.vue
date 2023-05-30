@@ -5,6 +5,8 @@
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, maxLength, between } from "@vuelidate/validators";
 
+import axios from "axios";
+
 // Components
 import TheButton from "../TheButton.vue";
 import TheInput from "../TheInput.vue";
@@ -24,6 +26,19 @@ const rules = computed(() => {
   //   between: between(10, 200)
 });
 
+const baseUrl = "http://localhost:5000/send";
+
+async function dataPost() {
+  try {
+    const response = await axios.post(baseUrl, contactData);
+    isSubmitMsg.value = true;
+    // console.log(response);
+  } catch (err) {
+    // handle error function
+    console.log(err);
+  }
+}
+
 // We initialized Vuelidated within this component
 const v$ = useVuelidate(rules, contactData);
 
@@ -32,7 +47,9 @@ async function handleContact() {
 
   if (result) {
     console.log("Form Validated and sent succesfully");
-    isSubmitMsg.value = true;
+
+    dataPost();
+
     v$.value.$reset();
 
     contactData.userEmail = "";

@@ -19,6 +19,7 @@
     "@vuelidate/core": "^2.0.2",
     "@vuelidate/validators": "^2.0.2",
     "@vueuse/core": "^10.1.2",
+    "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "pinia": "^2.0.32",
     "swiper": "^9.3.2",
