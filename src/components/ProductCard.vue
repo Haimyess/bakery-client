@@ -18,7 +18,7 @@ const cartStore = useCartStore();
 // console.log(cartStore.addToCart());
 
 interface Cake {
-  cakeId: number;
+  cakeId: string;
   cakeName: string;
   //   ingridients: Ingridients;
   cakePrice: number;

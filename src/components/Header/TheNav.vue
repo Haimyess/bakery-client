@@ -70,6 +70,7 @@ nav {
   position: fixed;
   padding: 1rem;
   top: 0;
+  z-index: 1000;
   background-color: #ffffff;
   border: 1px solid red;
 }

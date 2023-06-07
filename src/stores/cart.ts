@@ -5,7 +5,7 @@ import { defineStore } from "pinia";
 
 export const useCartStore = defineStore("cart", () => {
   interface Product {
-    cakeId: number;
+    cakeId: string;
     cakePrice: number;
     cakeDescription: string;
     cakeName: string;
