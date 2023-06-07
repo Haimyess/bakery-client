@@ -36,7 +36,7 @@ const cartStore = useCartStore();
         >
         <!-- Mobile -->
 
-        <RouterLink to="/products/">Tres Leches Cake</RouterLink>
+        <RouterLink to="`/products/${}`">Tres Leches Cake</RouterLink>
 
         <RouterLink to="/cart" class="mobile-cart">
           <div type="button" class="position-relative">

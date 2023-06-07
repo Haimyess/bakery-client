@@ -1,7 +1,7 @@
 <!-- @format -->
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import TheButton from "./TheButton.vue";
 // interface Ingridients {
 //   ingriedients: string[];
@@ -18,7 +18,7 @@ const cartStore = useCartStore();
 // console.log(cartStore.addToCart());
 
 interface Cake {
-  cakeId: string;
+  _cakeId: string;
   cakeName: string;
   //   ingridients: Ingridients;
   cakePrice: number;
@@ -34,11 +34,13 @@ console.log(props.cakeName);
 // Check this later
 
 const product: Cake = {
-  cakeId: props.cakeId,
+  _cakeId: props._cakeId,
   cakeName: props.cakeName,
   cakeDescription: props.cakeDescription,
   cakePrice: props.cakePrice,
 };
+
+console.log(props._cakeId);
 
 const isClicked = ref(false);
 function changeState() {
@@ -58,10 +60,15 @@ function changeState() {
 
 //   localStorage.setItem("cart", JSON.stringify(cartStore.cart));
 // }
+
+const deleteSpaces = computed(() => {
+  return props.cakeName.replaceAll(" ", "-");
+});
 </script>
 
 <template>
   <div>
+    <p>{{ props._cakeId }}</p>
     <h2>{{ props.cakeName }}</h2>
     <p>{{ props.cakeDescription }}</p>
     <p>{{ props.cakePrice }}</p>
@@ -72,6 +79,9 @@ function changeState() {
     <TheButton @click="cartStore.addToCart(product)" :state="isClicked"
       >Add to cart</TheButton
     >
+
+    <RouterLink :to="`/products/${deleteSpaces}`">View more..</RouterLink>
+    <!-- <RouterLink :to="`/products/${props._cakeId}`">View more..</RouterLink> -->
   </div>
 </template>
 

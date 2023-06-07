@@ -5,6 +5,8 @@
 <script setup lang="ts">
 // import { computed } from "vue";
 import CartBottomNav from "@/components/Cart/Components/CartBottomNav.vue";
+import SpecialNav from "@/components/Header/SpecialNav.vue";
+
 import { useCartStore } from "@/stores/cart";
 
 // Components
@@ -18,21 +20,22 @@ const cartStore = useCartStore();
 </script>
 
 <template>
-  <div class="cart-top">
+  <SpecialNav title="Your Cart" isCart="true" :data="cartStore.cartQuantity" />
+  <!-- <div class="cart-top">
     <GoBack />
-    <!-- <v-btn>Hi</v-btn> -->
+ 
 
     <div>
       <h4>Your Cart</h4>
       <span>{{ cartStore.cartQuantity }} items</span>
     </div>
-  </div>
+  </div> -->
 
   <!-- Create a component for each product later -->
   <template v-if="cartStore.cart.length > 0">
     <div
       v-for="product in cartStore.cart"
-      :key="product.cakeId"
+      :key="product._cakeId"
       class="cart-product"
     >
       <!-- Left -->
@@ -54,7 +57,7 @@ const cartStore = useCartStore();
           <!-- right -->
           <div>
             <div>
-              <button @click="cartStore.deleteFromCart(product.cakeId)">
+              <button @click="cartStore.deleteFromCart(product._cakeId)">
                 delete
               </button>
             </div>

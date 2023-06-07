@@ -6,28 +6,9 @@ import axios from "axios";
 
 import { ref, onMounted } from "vue";
 
-interface Product {
-  id: string;
-  price: number;
-  description: string;
-  name: string;
-  quantity?: number;
-}
+import { useProductsStore } from "@/stores/products";
 
-const products = ref<Product[]>([]);
-
-onMounted(() => {
-  getProducts();
-});
-
-async function getProducts() {
-  const baseUrl = "http://localhost:5000/api/v1/products";
-  const response = await axios.get(baseUrl);
-  products.value = response.data.data;
-  console.log(response);
-}
-
-// interface
+const productStore = useProductsStore();
 </script>
 <template>
   <div>
@@ -36,9 +17,9 @@ async function getProducts() {
     <section>
       <div>
         <ProductCard
-          v-for="cake in products"
-          :key="cake.id"
-          :cakeId="cake.id"
+          v-for="cake in productStore.products"
+          :key="cake._id"
+          :_cakeId="cake._id"
           :cakeDescription="cake.description"
           :cakePrice="cake.price"
           :cakeName="cake.name"

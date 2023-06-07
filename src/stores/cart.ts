@@ -5,7 +5,7 @@ import { defineStore } from "pinia";
 
 export const useCartStore = defineStore("cart", () => {
   interface Product {
-    cakeId: string;
+    _cakeId: string;
     cakePrice: number;
     cakeDescription: string;
     cakeName: string;
@@ -18,7 +18,7 @@ const isShow = ref(false);
   const cart = ref<Product[]>(JSON.parse(localStorage.getItem("cart")) || []);
 
   function addToCart(product: Product) {
-    const exist = cart.value.find((item) => item.cakeId === product.cakeId);
+    const exist = cart.value.find((item) => item._cakeId === product._cakeId);
 
     if (exist) {
       exist.cakeQuantity++;
@@ -35,7 +35,7 @@ const isShow = ref(false);
     if (product.cakeQuantity === 0) {
       console.log("we should delete the product");
 
-      deleteFromCart(product.cakeId);
+      deleteFromCart(product._cakeId);
       // localStorage.removeItem()
 
       //   const updatedArr = cart.value.filter(
@@ -51,8 +51,8 @@ const isShow = ref(false);
 
   console.log(cart.value);
 
-  function deleteFromCart(id: number) {
-    const updatedArr = cart.value.filter((item) => item.cakeId !== id);
+  function deleteFromCart(id: string) {
+    const updatedArr = cart.value.filter((item) => item._cakeId !== id);
     cart.value = updatedArr;
 
     localStorage.setItem("cart", JSON.stringify(cart.value));
