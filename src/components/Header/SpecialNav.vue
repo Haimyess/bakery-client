@@ -7,8 +7,8 @@ import GoBack from "../GoBack.vue";
 
 interface Header {
   title: string;
-  isCart: boolean;
-  data: string | number;
+  isCart: string;
+  data?: string | number;
 }
 const props = defineProps<Header>();
 </script>

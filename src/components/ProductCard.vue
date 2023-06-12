@@ -62,7 +62,8 @@ function changeState() {
 // }
 
 const deleteSpaces = computed(() => {
-  return props.cakeName.replaceAll(" ", "-");
+  const slug = props.cakeName;
+  return slug.replaceAll(" ", "-");
 });
 </script>
 
@@ -80,7 +81,7 @@ const deleteSpaces = computed(() => {
       >Add to cart</TheButton
     >
 
-    <RouterLink :to="`/products/${deleteSpaces}`">View more..</RouterLink>
+    <RouterLink :to="`/products/${props._cakeId}`">View more..</RouterLink>
     <!-- <RouterLink :to="`/products/${props._cakeId}`">View more..</RouterLink> -->
   </div>
 </template>
