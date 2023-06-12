@@ -1,0 +1,82 @@
+<!-- @format -->
+
+<script setup lang="ts">
+import { ref, computed } from "vue";
+// import { useCartStore } from "@/stores/cart";
+
+// const cartStore = useCartStore();
+
+import { useProductsStore } from "@/stores/products";
+const productStore = useProductsStore();
+
+const quantity = ref(1);
+
+const pricePerProduct = computed(() => {
+  return productStore.product?.quantity * quantity.value;
+});
+
+interface Nav {
+  buttonText: string;
+}
+
+const props = defineProps<Nav>();
+</script>
+
+<template>
+  <div class="container">
+    <!-- Price -->
+    <div class="">
+      <button class="button" @click="">-</button>
+      <span>{{ 1 }}</span>
+      <button class="button">+</button>
+    </div>
+
+    <!-- Button checkout -->
+    <div class="">
+      <button class="add-btn">
+        <span>{{ props.buttonText }}</span> <span>{{ pricePerProduct }}</span>
+      </button>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border: 1px solid red;
+  padding: 1rem 0;
+  gap: 1rem;
+}
+
+.container div:nth-child(1) {
+  border: 1px solid green;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.container div:last-child {
+  border: 1px solid blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 1;
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid red;
+}
+
+.add-btn {
+  width: 100%;
+  vertical-align: middle;
+}
+</style>

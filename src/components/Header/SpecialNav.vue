@@ -14,7 +14,7 @@ const props = defineProps<Header>();
 </script>
 
 <template>
-  <div class="cart-top">
+  <div class="navigation">
     <GoBack />
     <!-- <v-btn>Hi</v-btn> -->
 
@@ -24,3 +24,14 @@ const props = defineProps<Header>();
     </div>
   </div>
 </template>
+
+<style scope>
+.navigation {
+  position: fixed;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+}
+</style>
