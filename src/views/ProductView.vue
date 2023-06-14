@@ -19,6 +19,7 @@ import { useRoute } from "vue-router";
 
 import { useProductsStore } from "../stores/products";
 import ProductBottomNav from "@/components/ProductBottomNav.vue";
+import ReadMore from "@/components/Homepage/Components/ReadMore.vue";
 const productStore = useProductsStore();
 
 const route = useRoute();
@@ -54,11 +55,13 @@ onMounted(() => {
 
   <!-- info product -->
 
-  <div>
+  <div class="item-content">
     <h3 class="item-name">{{ productStore.product?.name }}</h3>
     <p class="item-price">{{ productStore.product?.price }} NIS</p>
+
+    <ReadMore :content="productStore.product?.description" :limit="100" />
     <!-- Create a vew more component -->
-    <p class="item-info">{{ productStore.product?.description }}</p>
+    <!-- <p class="item-info">{{ productStore.product?.description }}</p> -->
     <!-- Ingridients(nutritional information) -->
   </div>
 
@@ -66,12 +69,19 @@ onMounted(() => {
 </template>
 
 <style scope>
+.product-view {
+  padding: 1rem;
+}
 .image-wrapper {
   height: 200px;
   border: 1px solid black;
   margin-bottom: 2rem;
   text-align: center;
   vertical-align: middle;
+}
+
+.item-content {
+  padding: 1rem;
 }
 
 .item-name {
