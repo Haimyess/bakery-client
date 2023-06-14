@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <SpecialNav title="" isCart="false" />
+  <SpecialNav title="" :isCart="false" />
 
   <swiper
     :slides-per-view="1"

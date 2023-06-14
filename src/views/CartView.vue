@@ -32,7 +32,11 @@ const cartStore = useCartStore();
   </div> -->
 
   <!-- Create a component for each product later -->
-  <template v-if="cartStore.cart.length > 0">
+  <!-- <div class="cart-view"> -->
+
+  <!-- List of products -->
+  <div class="cart-view" v-if="cartStore.cart.length > 0">
+    <!-- Single product -->
     <div
       v-for="product in cartStore.cart"
       :key="product._cakeId"
@@ -42,9 +46,7 @@ const cartStore = useCartStore();
       <div class="product-img-wrapper">
         <img src="#" alt="Product image" class="product-img" />
       </div>
-
       <!-- Right -->
-
       <div class="cart-product-right">
         <!-- up -->
         <div class="cart-product--rg-up">
@@ -63,7 +65,6 @@ const cartStore = useCartStore();
             </div>
           </div>
         </div>
-
         <!-- down -->
         <div class="cart-product--rg-down">
           <!-- left -->
@@ -73,7 +74,6 @@ const cartStore = useCartStore();
           <!-- Right -->
           <div class="product-qty">
             <!-- quantity -->
-
             <button @click="cartStore.decreaseQuantity(product)">-</button>
             <span>{{ product.cakeQuantity }}</span>
             <button @click="cartStore.addToCart(product)">+</button>
@@ -83,19 +83,24 @@ const cartStore = useCartStore();
     </div>
 
     <!-- <span>Subtotal price</span>
-          <span
-            >${{
-              getPricePerItem(product.cakeQuantity, product.cakePrice)
-            }}</span
-          > -->
-  </template>
-
-  <p v-else>Your cart is empty.</p>
+        <span
+        >${{
+          getPricePerItem(product.cakeQuantity, product.cakePrice)
+        }}</span
+        > -->
+    <!-- </template> -->
+  </div>
+  <p class="empty-msg" v-else>Your cart is empty.</p>
 
   <CartBottomNav v-if="cartStore.cart.length > 0" />
 </template>
 
 <style>
+.empty-msg {
+  text-align: center;
+  padding: 30px;
+  /* position: ; */
+}
 .cart-top {
   border: 1px solid red;
 }
