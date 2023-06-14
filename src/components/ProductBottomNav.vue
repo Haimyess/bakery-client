@@ -1,40 +1,56 @@
 <!-- @format -->
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 // import { useCartStore } from "@/stores/cart";
 
 // const cartStore = useCartStore();
 
 import { useProductsStore } from "@/stores/products";
+import { useCartStore } from "@/stores/cart";
 const productStore = useProductsStore();
+const cartStore = useCartStore();
 
 const quantity = ref(1);
 
 const pricePerProduct = computed(() => {
-  return productStore.product?.quantity * quantity.value;
+  return productStore.product?.price * quantity.value;
 });
 
 interface Nav {
   buttonText: string;
 }
 
+interface Product {
+  _cakeId: string;
+  cakePrice: number;
+  cakeDescription: string;
+  cakeName: string;
+  cakeQuantity?: number;
+}
+
 const props = defineProps<Nav>();
+
+const increaseQtty = () => quantity.value++;
+const decreaseQtty = () => quantity.value--;
 </script>
 
 <template>
   <div class="container">
     <!-- Price -->
     <div class="">
-      <button class="button" @click="">-</button>
-      <span>{{ 1 }}</span>
-      <button class="button">+</button>
+      <button class="button" @click="decreaseQtty">-</button>
+      <span>{{ quantity }}</span>
+      <button class="button" @click="increaseQtty">+</button>
     </div>
 
     <!-- Button checkout -->
     <div class="">
-      <button class="add-btn">
-        <span>{{ props.buttonText }}</span> <span>{{ pricePerProduct }}</span>
+      <button
+        class="add-btn"
+        @click="cartStore.addToCart(productStore.product)"
+      >
+        <span>{{ props.buttonText }}</span> - <span>{{ pricePerProduct }}</span>
       </button>
     </div>
   </div>

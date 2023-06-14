@@ -18,29 +18,29 @@ const cartStore = useCartStore();
 // console.log(cartStore.addToCart());
 
 interface Cake {
-  _cakeId: string;
-  cakeName: string;
+  _id: string;
+  name: string;
   //   ingridients: Ingridients;
-  cakePrice: number;
+  price: number;
   //   images: Images;
-  cakeDescription: string;
-  cakeQuantity?: number | undefined;
+  description: string;
+  quantity?: number | undefined;
 }
 
 const props = defineProps<Cake>();
 
-console.log(props.cakeName);
+console.log(props.name);
 
 // Check this later
 
 const product: Cake = {
-  _cakeId: props._cakeId,
-  cakeName: props.cakeName,
-  cakeDescription: props.cakeDescription,
-  cakePrice: props.cakePrice,
+  _id: props._id,
+  name: props.name,
+  description: props.description,
+  price: props.price,
 };
 
-console.log(props._cakeId);
+console.log(props._id);
 
 const isClicked = ref(false);
 function changeState() {
@@ -62,17 +62,17 @@ function changeState() {
 // }
 
 const deleteSpaces = computed(() => {
-  const slug = props.cakeName;
+  const slug = props.name;
   return slug.replaceAll(" ", "-");
 });
 </script>
 
 <template>
   <div>
-    <p>{{ props._cakeId }}</p>
-    <h2>{{ props.cakeName }}</h2>
-    <p>{{ props.cakeDescription }}</p>
-    <p>{{ props.cakePrice }}</p>
+    <p>{{ props._id }}</p>
+    <h2>{{ props.name }}</h2>
+    <p>{{ props.description }}</p>
+    <p>{{ props.price }}</p>
 
     <!-- --------------------------------------------------------- -->
     <!-- ----------Add design and change it when clicked---------- -->
@@ -81,7 +81,7 @@ const deleteSpaces = computed(() => {
       >Add to cart</TheButton
     >
 
-    <RouterLink :to="`/products/${props._cakeId}`">View more..</RouterLink>
+    <RouterLink :to="`/products/${props._id}`">View more..</RouterLink>
     <!-- <RouterLink :to="`/products/${props._cakeId}`">View more..</RouterLink> -->
   </div>
 </template>

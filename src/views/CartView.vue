@@ -20,7 +20,7 @@ const cartStore = useCartStore();
 </script>
 
 <template>
-  <SpecialNav title="Your Cart" isCart="true" :data="cartStore.cartQuantity" />
+  <SpecialNav title="Your Cart" :isCart="true" :data="cartStore.cartQuantity" />
   <!-- <div class="cart-top">
     <GoBack />
  
@@ -53,13 +53,13 @@ const cartStore = useCartStore();
           <!-- Left -->
           <div>
             <span class="product-name">{{
-              product.cakeName.toLocaleUpperCase()
+              product.name.toLocaleUpperCase()
             }}</span>
           </div>
           <!-- right -->
           <div>
             <div>
-              <button @click="cartStore.deleteFromCart(product._cakeId)">
+              <button @click="cartStore.deleteFromCart(product._id)">
                 delete
               </button>
             </div>
@@ -69,14 +69,16 @@ const cartStore = useCartStore();
         <div class="cart-product--rg-down">
           <!-- left -->
           <div>
-            <span class="product-price">${{ product.cakePrice }}</span>
+            <span class="product-price">${{ product.price }}</span>
           </div>
           <!-- Right -->
           <div class="product-qty">
             <!-- quantity -->
-            <button @click="cartStore.decreaseQuantity(product)">-</button>
-            <span>{{ product.cakeQuantity }}</span>
-            <button @click="cartStore.addToCart(product)">+</button>
+            <button class="btn" @click="cartStore.decreaseQuantity(product)">
+              -
+            </button>
+            <span>{{ product.quantity }}</span>
+            <button class="btn" @click="cartStore.addToCart(product)">+</button>
           </div>
         </div>
       </div>

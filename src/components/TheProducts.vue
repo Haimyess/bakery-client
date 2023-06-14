@@ -19,10 +19,10 @@ const productStore = useProductsStore();
         <ProductCard
           v-for="cake in productStore.products"
           :key="cake._id"
-          :_cakeId="cake._id"
-          :cakeDescription="cake.description"
-          :cakePrice="cake.price"
-          :cakeName="cake.name"
+          :_id="cake._id"
+          :description="cake.description"
+          :price="cake.price"
+          :name="cake.name"
         />
       </div>
     </section>

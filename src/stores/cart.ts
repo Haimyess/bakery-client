@@ -5,11 +5,11 @@ import { defineStore } from "pinia";
 
 export const useCartStore = defineStore("cart", () => {
   interface Product {
-    _cakeId: string;
-    cakePrice: number;
-    cakeDescription: string;
-    cakeName: string;
-    cakeQuantity?: number;
+    _id: string;
+    price: number;
+    description: string;
+    name: string;
+    quantity?: number;
   }
 const isShow = ref(false);
   // add to cart localstoreage
@@ -18,24 +18,24 @@ const isShow = ref(false);
   const cart = ref<Product[]>(JSON.parse(localStorage.getItem("cart")) || []);
 
   function addToCart(product: Product) {
-    const exist = cart.value.find((item) => item._cakeId === product._cakeId);
+    const exist = cart.value.find((item) => item._id === product._id);
 
     if (exist) {
-      exist.cakeQuantity++;
+      exist.quantity++;
     } else {
-      cart.value.push({ ...product, cakeQuantity: 1 });
+      cart.value.push({ ...product, quantity: 1 });
     }
 
     localStorage.setItem("cart", JSON.stringify(cart.value));
   }
 
   function decreaseQuantity(product : Product) {
-    product.cakeQuantity--;
+    product.quantity--;
 
-    if (product.cakeQuantity === 0) {
+    if (product.quantity === 0) {
       console.log("we should delete the product");
 
-      deleteFromCart(product._cakeId);
+      deleteFromCart(product._id);
       // localStorage.removeItem()
 
       //   const updatedArr = cart.value.filter(
@@ -52,7 +52,7 @@ const isShow = ref(false);
   console.log(cart.value);
 
   function deleteFromCart(id: string) {
-    const updatedArr = cart.value.filter((item) => item._cakeId !== id);
+    const updatedArr = cart.value.filter((item) => item._id !== id);
     cart.value = updatedArr;
 
     localStorage.setItem("cart", JSON.stringify(cart.value));
@@ -63,7 +63,7 @@ const isShow = ref(false);
 
     let total = 0
     cart.value.forEach(product => {
-      total += product.cakePrice * product.cakeQuantity
+      total += product.price * product.quantity
     });
     return total
   })
@@ -73,7 +73,7 @@ const isShow = ref(false);
   
 const cartQuantity = computed(() => {
   // reduce all the quantities later
-  return cart.value.reduce((acc, curr) => acc + curr.cakeQuantity, 0);
+  return cart.value.reduce((acc, curr) => acc + curr.quantity, 0);
 });
     
 function toggleCart() {
