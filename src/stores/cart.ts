@@ -17,13 +17,17 @@ const isShow = ref(false);
 
   const cart = ref<Product[]>(JSON.parse(localStorage.getItem("cart")) || []);
 
-  function addToCart(product: Product) {
+
+  // create a function to check if exist to be able to use it multiple times
+
+
+  function addToCart(product: Product, qtty = 1) {
     const exist = cart.value.find((item) => item._id === product._id);
 
     if (exist) {
       exist.quantity++;
     } else {
-      cart.value.push({ ...product, quantity: 1 });
+      cart.value.push({ ...product, quantity: qtty });
     }
 
     localStorage.setItem("cart", JSON.stringify(cart.value));
